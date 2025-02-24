@@ -123,7 +123,10 @@ ggplot(df, aes(x = mass, y = svl)) +
   geom_point()
 
 ggplot(df_transform, aes(x = mass, y = svl)) +
-  geom_point()
+  geom_point() +
+  labs(
+    y = "log(svl)"
+  )
 
 
 
