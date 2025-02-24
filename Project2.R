@@ -39,7 +39,8 @@ temp1 <- ggplot(df,aes(x = svl, fill = type)) +
     x = "Snout-vent Length (mm)",
     y = "No. Per Bucket"
   )
-
+temp
+temp1
 
 # ------------------------ Part 2 ------------------------ 
 #Perform Wilcoxon Rank Sum Test on Mass and SVL based on Group
