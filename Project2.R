@@ -132,12 +132,56 @@ ggplot(df_transform, aes(x = mass, y = svl)) +
   )
 
 
+# ------------------------ Part 7 ------------------------
 
 
+f.hotel2<-function(x1,x2)
+{
+  # data matrices x1 and x2 for the two groups
+  # Compute the dimensions of the data matrices
+  p<-dim(x1)[2]
+  n1<-dim(x1)[1]
+  n2<-dim(x2)[1]
+  
+  # Compute sample means and covariances
+  
+  m1<-apply(x1,2,mean)
+  s1<-var(x1)
+  m2<-apply(x2,2,mean)
+  s2<-var(x2)
+  cat("xbar1=",m1," s1=",s1," xbar2=",m2," s2=",s2,fill=T)
+  # Compute the pooled estimate of covariance matrix
+  s<-((n1-1)*s1+(n2-1)*s2)/(n1+n2-2)
+  # Compute the two sample Hotelling T-squared test
+  T2<-((n1*n2)/(n1+n2))*t(m1-m2)%*%solve(s)%*%(m1-m2)
+  # Compute F-value, compute df and the p-value
+  fval<-(n1+n2-p-1)*T2/(p*(n1+n2-2))
+  df1<-p
+  df2<-n1+n2-p-1
+  pval<-1-pf(fval,df1,df2)
+  cat("T-squared=",T2,fill=TRUE)
+  df<-cbind(df1,df2)
+  cat("F-value=",fval," df=",df," p-value=",pval,fill=T)
+}
+
+# vars are: C_mass, C_svl, S_mass, and S_svl
+############# Hotelling two-sample test.
+df_type0Trans <- df_transform %>%
+  filter(type == 0)
+
+df_type1Trans <- df_transform %>%
+  filter(type == 1)
+
+          
+f.hotel2(df_type0Trans[,1:2],df_type1Trans[,1:2])
 
 
-
-
+ggplot(df_transform, aes(x = mass, y = svl, color = type)) +
+  geom_point() +
+  labs(
+    x = "log(mass)",
+    y = "log(svl)"
+  )
 
 
 
