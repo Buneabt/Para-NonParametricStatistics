@@ -94,7 +94,7 @@ temp2 <- ggplot(df_transform,aes(x = mass, fill = type)) +
     title = "Histogram of Lizard Mass",
     x = "Log of Mass of Lizard (g)",
     y = "No. Per Bucket"
-  )
+  ) + theme_bw()
 
 temp3 <- ggplot(df_transform,aes(x = svl, fill = type)) +
   geom_histogram() +
@@ -102,7 +102,7 @@ temp3 <- ggplot(df_transform,aes(x = svl, fill = type)) +
     title = "Histogram of Lizard SVL",
     x = "Log of Snout-vent Length (mm)",
     y = "No. Per Bucket"
-  )
+  ) + theme_bw()
 
 temp2
 temp3
@@ -110,22 +110,24 @@ temp3
 # ------------------------ Part 6 ------------------------
 
 cor(df$mass[df$type == 0], df$svl[df$type == 0])
-
-cor(df$mass[df$type == 1], df$svl[df$type == 1])
-
-
 cor(df_transform$mass[df_transform$type == 0], df_transform$svl[df_transform$type == 0])
 
+cor(df$mass[df$type == 1], df$svl[df$type == 1])
 cor(df_transform$mass[df_transform$type == 1], df_transform$svl[df_transform$type == 1])
 
 #Show how taking the log made it more linear thus more correlated as the corr() function works on a lienar
 #basis
 ggplot(df, aes(x = mass, y = svl)) +
-  geom_point()
+  geom_point() +
+  labs(
+    x = "mass",
+    y = "svl"
+  )
 
 ggplot(df_transform, aes(x = mass, y = svl)) +
   geom_point() +
   labs(
+    x = "log(mass)",
     y = "log(svl)"
   )
 
