@@ -24,7 +24,7 @@ part1 <- function() {
 }
 
 # Here we can see the the data is infact not normal and more log normal
-temp <- ggplot(df,aes(x = mass, fill = type)) +
+temp <- ggplot(df,aes(x = mass)) +
   geom_histogram() +
   labs(
     title = "Histogram of Lizard Mass",
@@ -32,7 +32,7 @@ temp <- ggplot(df,aes(x = mass, fill = type)) +
     y = "No. Per Bucket"
   )
 
-temp1 <- ggplot(df,aes(x = svl, fill = type)) +
+temp1 <- ggplot(df,aes(x = svl)) +
   geom_histogram() +
   labs(
     title = "Histogram of Lizard SVL",
