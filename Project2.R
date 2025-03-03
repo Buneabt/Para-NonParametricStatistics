@@ -76,10 +76,10 @@ part3 <- function() {
 # ------------------------ Part 4 ------------------------
 
 part4 <- function() {
-  print(t.test(mass ~ type, data = df_transform))
+  print(t.test(mass ~ type, data = df_transform, var.equal = FALSE))
   
   
-  print(t.test(svl ~ type, data = df_transform))
+  print(t.test(svl ~ type, data = df_transform, var.equal = FALSE))
 }
 
 
